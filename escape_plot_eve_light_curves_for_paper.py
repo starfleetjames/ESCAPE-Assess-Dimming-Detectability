@@ -151,9 +151,10 @@ for col, data_group in enumerate(plot_data):
         ax.tick_params(axis='both', which='minor', labelsize=10)
 
 plt.tight_layout()
-filename = f"{save_path}eve_dimming_light_curve_examples"
-plt.savefig(f"{filename}.png", bbox_inches='tight', dpi=300)
-plt.savefig(f"{filename}.pdf", bbox_inches='tight')
+filename_png = f"{save_path}png/eve_dimming_light_curve_examples"
+filename_pdf = f"{save_path}eve_dimming_light_curve_examples"
+plt.savefig(f"{filename_png}.png", bbox_inches='tight', dpi=300)
+plt.savefig(f"{filename_pdf}.pdf", bbox_inches='tight')
 plt.show()
 
 pass

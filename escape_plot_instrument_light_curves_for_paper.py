@@ -6,7 +6,7 @@ import re
 
 def extract_values(filename):
     # Define a regex pattern to match the required values
-    pattern = r"light_curve_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
+    pattern = r"light_curve_instrument_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
     
     # Search for the pattern in the filename
     match = re.search(pattern, filename)
@@ -40,12 +40,15 @@ def plot_light_curve(ax, dimming, lines, preflare_baselines, best_detection, ins
     best_detection_wavelength_combo = best_detection.best_detection_wavelength_combo[0].decode('utf-8')
 
 
+# Plot for either escape or euve
+instrument = 'escape'  
+
 save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
 data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
 filenames = [
-    'light_curve_-10.5_xray_17.5_ism.sav',
-    'light_curve_-10.5_xray_18.5_ism.sav',
-    'light_curve_-10.5_xray_19.0_ism.sav'
+    f'light_curve_{instrument}_-10.5_xray_17.5_ism.sav',
+    f'light_curve_{instrument}_-10.5_xray_18.2_ism.sav',
+    f'light_curve_{instrument}_-10.5_xray_19.0_ism.sav'
 ]
 
 # Load data from all files
@@ -68,7 +71,7 @@ for data in data_list:
 
 # Colors for different traces
 colors = ['tomato', 'limegreen','dodgerblue']
-isms = [17.5, 18.5, 19.0]
+isms = [17.5, 18.25, 19.0]
 
 # Create a 3x3 subplot structure
 fig, axes = plt.subplots(3, 3, figsize=(16, 9))
@@ -87,7 +90,7 @@ for col, data_group in enumerate(data_groups):
         if row == 2:
             ax.set_xlabel('hours since start')
         if col == 0:
-            ax.set_ylabel(f'intensity [photons s$^-$$^1$ cm$^-$$^2$]')
+            ax.set_ylabel(f'intensity [counts]')
         
         # Set the title using the wave variable
         if col == 0:
@@ -108,9 +111,10 @@ handles = [mpatches.Patch(color=colors[i], label=rf'log$_{{10}}$N(HI) [cm$^{{-2}
 fig.legend(handles=handles, loc='upper center', bbox_to_anchor=(0.5, 0.95), ncol=len(isms))
 
 plt.tight_layout(rect=[0, 0, 1, 0.92])
-filename = f"{save_path}ism_dimming_light_curve_examples"
-plt.savefig(f"{filename}.png", bbox_inches='tight', dpi=300)
-plt.savefig(f"{filename}.pdf", bbox_inches='tight')
+filename_png = f"{save_path}png/{instrument}_dimming_light_curve_examples"
+filename_pdf = f"{save_path}{instrument}_dimming_light_curve_examples"
+plt.savefig(f"{filename_png}.png", bbox_inches='tight', dpi=300)
+plt.savefig(f"{filename_pdf}.pdf", bbox_inches='tight')
 plt.show()
 
 pass
