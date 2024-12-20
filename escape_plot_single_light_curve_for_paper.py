@@ -35,13 +35,13 @@ preflare_times = time_hours[preflare_window_indices[:-1]]
 preflare_values = light_curve[preflare_window_indices[:-1]]
 ax.plot(preflare_times, preflare_values, color='dodgerblue', linewidth=3.0, label='used for baseline calculation', zorder=5)
 
+# Add a thick dashed dodgerblue horizontal line for the baseline
+ax.axhline(preflare_baseline, color='dodgerblue', linestyle='--', linewidth=3.5, label='baseline')
+
 # Highlight the depth window in tomato
 depth_times = time_hours[depth_window_indices[:-1]]
 depth_values = light_curve[depth_window_indices[:-1]]
 ax.plot(depth_times, depth_values, color='tomato', linewidth=3.1, label='used for depth calculation', zorder=5)
-
-# Add a thick dashed dodgerblue horizontal line for the baseline
-ax.axhline(preflare_baseline, color='dodgerblue', linestyle='--', linewidth=3.5, label='baseline')
 
 # Add labels
 ax.set_xlabel('hours since start', fontsize=22)

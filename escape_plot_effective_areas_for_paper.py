@@ -15,7 +15,7 @@ escape_gold_aeff['effective area [cm2]'] = escape_gold_aeff['effective area [cm2
 
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.plot(escape_gold_aeff['wavelength [Å]'], escape_gold_aeff['effective area [cm2]'], label='ESCAPE', color='black', linewidth=2)
-ax.plot(euve_aeff['wavelength [Å]'], euve_aeff['effective area [cm2]'], label='EUVE full-sky', color='tomato', linewidth=2, linestyle='--')
+ax.plot(euve_aeff['wavelength [Å]'], euve_aeff['effective area [cm2]'], label='EUVE all-sky', color='tomato', linewidth=2, linestyle='--')
 ax.plot(euve_deep_aeff['wavelength [Å]'], euve_deep_aeff['effective area [cm2]'], label='EUVE deep-sky', color='dodgerblue', linewidth=2, linestyle='-.')
 
 ax.set_xlabel('wavelength [Å]', fontsize=22)
