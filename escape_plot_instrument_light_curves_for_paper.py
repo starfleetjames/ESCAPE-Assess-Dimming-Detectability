@@ -6,7 +6,7 @@ import re
 
 def extract_values(filename):
     # Define a regex pattern to match the required values
-    pattern = r"light_curve_instrument_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
+    pattern = r"light_curve_euve_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
     
     # Search for the pattern in the filename
     match = re.search(pattern, filename)
@@ -41,10 +41,10 @@ def plot_light_curve(ax, dimming, lines, preflare_baselines, best_detection, ins
 
 
 # Plot for either escape or euve
-instrument = 'escape'  
+instrument = 'euve'  
 
 save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
+data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/euve line combo/'
 filenames = [
     f'light_curve_{instrument}_-10.5_xray_17.5_ism.sav',
     f'light_curve_{instrument}_-10.5_xray_18.2_ism.sav',

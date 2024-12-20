@@ -77,10 +77,23 @@ def process_and_plot_data(data, spectral_integration_type=''):
     else:
         prefix = "other"
 
+    spectral_integration_type_underscores = spectral_integration_type_underscores.replace(f"{prefix}_", "", 1)
+    
     png_filename = f"{save_path}png/{prefix}_dimming_detection_significance_{spectral_integration_type_underscores}"
     pdf_filename = f"{save_path}{prefix}_dimming_detection_significance_{spectral_integration_type_underscores}"
     plt.savefig(f"{png_filename}.png", bbox_inches='tight', dpi=300)
+    
+    # Temporarily set the title for the PDF
+    original_title = plt.gca().get_title()
+    if "band" in spectral_integration_type.lower():
+        temporary_title = "Best Performing Band"
+    elif "combo" in spectral_integration_type.lower():
+        temporary_title = "Best Performing Line Combination"
+    else:
+        temporary_title = ""
+    plt.gca().set_title(temporary_title)
     plt.savefig(f"{pdf_filename}.pdf", bbox_inches='tight')
+    plt.gca().set_title(original_title)
     plt.show()
 
     return interpolated_column_density
@@ -138,13 +151,19 @@ data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detecta
 
 file_path_combo_escape = data_path + 'escape dimming parameter exploration 5-line combo solid gold 17.5-19 ism 600s exposure.csv'
 file_path_bands_escape = data_path + 'escape dimming parameter exploration bands solid gold 17.5-19 ism 600s exposure.csv'
-file_path_combo_euve = data_path + 'euve dimming parameter exploration 5-line combo solid gold 17.5-19 ism 600s exposure.csv'
-file_path_bands_euve = data_path + 'euve dimming parameter exploration bands solid gold 17.5-19 ism 600s exposure.csv'
+file_path_combo_euve = data_path + 'euve dimming parameter exploration 5-line combo 17.5-19 ism 600s exposure.csv'
+file_path_bands_euve = data_path + 'euve dimming parameter exploration bands 17.5-19 ism 600s exposure.csv'
                                 
 data_combo_escape = pd.read_csv(file_path_combo_escape)
 data_band_escape = pd.read_csv(file_path_bands_escape)
 data_combo_euve = pd.read_csv(file_path_combo_euve)
 data_band_euve = pd.read_csv(file_path_bands_euve)
+
+# Print out all of the unique values of data_band_escape['log10_f_x']
+unique_log10_f_x_values = data_band_escape['log10_f_x'].unique()
+print("Unique values of data_band_escape['log10_f_x']:", unique_log10_f_x_values)
+
+
 
 # Process the data and get the best fit column density
 best_fit_column_density_line_combo = process_and_plot_data(data_combo_escape, spectral_integration_type='ESCAPE 5-line Combo 600s Exposure')

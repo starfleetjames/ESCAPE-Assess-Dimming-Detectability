@@ -8,20 +8,22 @@ save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability 
 data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
 
 euve_aeff = pd.read_csv(data_path + 'euve_aeff.csv')
+euve_deep_aeff = pd.read_csv(data_path + 'euve_deep_aeff.csv')
 escape_gold_aeff = pd.read_csv(data_path + 'escape_gold_aeff.csv')
 
 escape_gold_aeff['effective area [cm2]'] = escape_gold_aeff['effective area [cm2]'].apply(lambda x: np.nan if x < 0 else x)
 
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.plot(escape_gold_aeff['wavelength [Å]'], escape_gold_aeff['effective area [cm2]'], label='ESCAPE', color='black', linewidth=2)
-ax.plot(euve_aeff['wavelength [Å]'], euve_aeff['effective area [cm2]'], label='EUVE', color='grey', linewidth=2, linestyle='--')
+ax.plot(euve_aeff['wavelength [Å]'], euve_aeff['effective area [cm2]'], label='EUVE full-sky', color='tomato', linewidth=2, linestyle='--')
+ax.plot(euve_deep_aeff['wavelength [Å]'], euve_deep_aeff['effective area [cm2]'], label='EUVE deep-sky', color='dodgerblue', linewidth=2, linestyle='-.')
 
 ax.set_xlabel('wavelength [Å]', fontsize=22)
 ax.set_ylabel('effective area [cm²]', fontsize=22)
 ax.set_yscale('log')
 ax.set_xlim([100, 900])
 ax.set_ylim(bottom=1e-2)
-ax.legend(fontsize=20)
+ax.legend(fontsize=18)
 ax.grid(True, which='both', linestyle='--', linewidth=0.5)
 ax.tick_params(axis='both', which='major', labelsize=20)
 ax.tick_params(axis='both', which='minor', labelsize=18)
