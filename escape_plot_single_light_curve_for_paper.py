@@ -43,10 +43,18 @@ depth_times = time_hours[depth_window_indices[:-1]]
 depth_values = light_curve[depth_window_indices[:-1]]
 ax.plot(depth_times, depth_values, color='tomato', linewidth=3.1, label='used for depth calculation', zorder=5)
 
+# Print the time_hours of depth_window_indices and calculate the delta
+print("Depth window times:", depth_times)
+if len(depth_times) > 1:
+    delta = depth_times[-1] - depth_times[0]
+    print("Delta between first and last depth window time:", delta)
+
 # Add labels
 ax.set_xlabel('hours since start', fontsize=22)
 ax.set_ylabel(f'{best_detection_wavelength_combo}\nintensity [counts]', fontsize=22)
 ax.legend()
+
+ax.set_xlim(0, 25)
 
 # Tick formatting
 ax.grid(True, which='both', linestyle='--', linewidth=0.5)

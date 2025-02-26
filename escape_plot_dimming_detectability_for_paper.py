@@ -86,9 +86,9 @@ def process_and_plot_data(data, spectral_integration_type=''):
     # Temporarily set the title for the PDF
     original_title = plt.gca().get_title()
     if "band" in spectral_integration_type.lower():
-        temporary_title = "Best Performing Band"
+        temporary_title = f"Best Performing {prefix.upper()} Band"
     elif "combo" in spectral_integration_type.lower():
-        temporary_title = "Best Performing Line Combination"
+        temporary_title = f"Best Performing {prefix.upper()} Line Combination"
     else:
         temporary_title = ""
     plt.gca().set_title(temporary_title)
