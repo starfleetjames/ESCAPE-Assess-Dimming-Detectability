@@ -4,9 +4,17 @@ import matplotlib.patches as mpatches
 from scipy.io import readsav
 import re
 
-def extract_values(filename):
-    # Define a regex pattern to match the required values
-    pattern = r"light_curve_euve_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
+# Set font sizes for publication
+plt.rc('font', size=18)          # controls default text sizes
+plt.rc('axes', titlesize=20)     # fontsize of the axes title
+plt.rc('axes', labelsize=20)     # fontsize of the x and y labels
+plt.rc('xtick', labelsize=18)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=18)    # fontsize of the tick labels
+plt.rc('legend', fontsize=16)    # legend fontsize
+
+def extract_values(filename, instrument):
+    # Define a regex pattern to match the required values, using the instrument parameter
+    pattern = fr"light_curve_{instrument}_([-+]?\d*\.\d+|\d+)_xray_([-+]?\d*\.\d+|\d+)_ism"
     
     # Search for the pattern in the filename
     match = re.search(pattern, filename)
@@ -18,7 +26,7 @@ def extract_values(filename):
         
         return xray_flux, ism
     else:
-        raise ValueError("Filename format is incorrect or values not found")
+        raise ValueError(f"Filename format is incorrect or values not found for instrument {instrument}")
 
 
 def get_depth_window_indices(dimming, best_detection):
@@ -41,10 +49,10 @@ def plot_light_curve(ax, dimming, lines, preflare_baselines, best_detection, ins
 
 
 # Plot for either escape or euve
-instrument = 'euve'  
+instrument = 'escape'  
 
 save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/euve line combo/'
+data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/' #euve line combo/'
 filenames = [
     f'light_curve_{instrument}_-10.5_xray_17.5_ism.sav',
     f'light_curve_{instrument}_-10.5_xray_18.2_ism.sav',
@@ -57,7 +65,7 @@ xray_list = []
 ism_list = []
 for file in filenames:
     data = readsav(data_path + file)
-    xray, ism = extract_values(file)
+    xray, ism = extract_values(file, instrument)
     data_list.append(data)
     xray_list.append(xray)
     ism_list.append(ism)
