@@ -142,6 +142,7 @@ for idx, file in enumerate(filenames):
             ax = axes[row, col]
             ax.plot(hours, data, label='Photon Flux', color=colors[idx], linewidth=2)
             ax.axhline(baseline_levels[label].value, color=colors[idx], linestyle='--', linewidth=1)
+            ax.set_xlim(0, 25)
             ax.set_xlabel('hours since start', fontsize=18)
             ax.set_ylabel('intensity [photons s$^{-1}$ cm$^{-2}$]', fontsize=18)
             ax.set_title(f'{label}', fontsize=20)

@@ -142,6 +142,7 @@ for col, data_group in enumerate(plot_data):
         ax = axes[row, col]
         ax.plot(hours, data, label='Photon Flux', color='black', linewidth=1.5)
         ax.axhline(baseline_levels[label].value, color='gray', linestyle='--', label='Baseline Level', linewidth=1.5)
+        ax.set_xlim(0, 25)
         ax.set_xlabel('hours since start', fontsize=14)
         ax.set_ylabel('intensity [photons s$^{-1}$ cm$^{-2}$]', fontsize=14)
         ax.set_title(f'{label}', fontsize=16)
