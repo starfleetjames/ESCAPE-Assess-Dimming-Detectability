@@ -7,12 +7,12 @@ from sklearn.metrics import r2_score
 from scipy.interpolate import interp1d
 
 # Set font sizes for publication
-plt.rc('font', size=16)          # controls default text sizes
-plt.rc('axes', titlesize=18)     # fontsize of the axes title
-plt.rc('axes', labelsize=18)     # fontsize of the x and y labels
-plt.rc('xtick', labelsize=16)    # fontsize of the tick labels
-plt.rc('ytick', labelsize=16)    # fontsize of the tick labels
-plt.rc('legend', fontsize=14)    # legend fontsize
+plt.rc('font', size=20)          # controls default text sizes
+plt.rc('axes', titlesize=22)     # fontsize of the axes title
+plt.rc('axes', labelsize=22)     # fontsize of the x and y labels
+plt.rc('xtick', labelsize=20)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=20)    # fontsize of the tick labels
+plt.rc('legend', fontsize=18)    # legend fontsize
 
 def process_and_plot_data(data, spectral_integration_type=''):
     # Sort the data by the first column ("log10 F(X) (erg/cm2/s)")
