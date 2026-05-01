@@ -1,11 +1,13 @@
+from pathlib import Path
+
 import numpy as np
 import astropy.units as u
 from astropy.constants import h, c
 from astropy.time import Time
 import pandas as pd
 import matplotlib.pyplot as plt
-save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
+save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
+data_path = str(Path('~/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration').expanduser()) + '/'
 
 euve_aeff = pd.read_csv(data_path + 'euve_aeff.csv')
 euve_deep_aeff = pd.read_csv(data_path + 'euve_deep_aeff.csv')

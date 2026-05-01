@@ -1,4 +1,5 @@
-import os
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -146,8 +147,8 @@ def shade_regions(ax, flux, detection_significance, threshold=3):
     ax.set_xlim(original_xlim)
 
 
-save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
+save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
+data_path = str(Path('~/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration').expanduser()) + '/'
 
 file_path_combo_escape = data_path + 'escape dimming parameter exploration 5-line combo solid gold 17.5-19 ism 600s exposure.csv'
 file_path_bands_escape = data_path + 'escape dimming parameter exploration bands solid gold 17.5-19 ism 600s exposure.csv'

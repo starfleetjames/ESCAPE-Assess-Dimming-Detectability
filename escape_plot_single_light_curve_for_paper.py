@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from scipy.io import readsav
 import matplotlib.pyplot as plt
 import numpy as np
@@ -110,7 +112,7 @@ def format_plot(ax, wavelength_combo, ymin=None, ymax=None):
 
 def save_plot(fig, efficiency):
     """Save plot in both PDF and PNG formats"""
-    save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
+    save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
     efficiency_str = f"_{int(efficiency*100)}percent" if efficiency < 1.0 else ""
     
     # Save PNG
@@ -135,7 +137,7 @@ def create_single_light_curve_plot(efficiency=1.0, orbital_period_minutes=90.0, 
         Whether to save the plot to disk, default=True
     """
     # Load data
-    file_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/ESCAPE Solid Gold Best Detection Light Curve.sav'
+    file_path = str(Path('~/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/ESCAPE Solid Gold Best Detection Light Curve.sav').expanduser())
     data = load_light_curve_data(file_path)
     
     # Apply observing efficiency

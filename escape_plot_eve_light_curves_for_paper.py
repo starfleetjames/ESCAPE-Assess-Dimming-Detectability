@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import astropy.units as u
 from astropy.constants import h, c
@@ -5,8 +7,8 @@ from astropy.time import Time
 from scipy.io import readsav
 import matplotlib.pyplot as plt
 
-save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-eve_data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/eve_for_escape/EVE Dimming Data for ESCAPE.sav'
+save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
+eve_data_path = str(Path('~/Dropbox/Research/Data/ESCAPE/eve_for_escape/EVE Dimming Data for ESCAPE.sav').expanduser())
 tmp = readsav(eve_data_path)
 eve = tmp['eve']
 

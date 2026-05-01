@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import astropy.units as u
 from astropy.time import Time
@@ -5,8 +7,8 @@ from scipy.io import readsav
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/'
+save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
+data_path = str(Path('~/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration').expanduser()) + '/'
 filenames = [
     'stellar_spectrum_-10.5_xray_17.5_ism.sav',
     'stellar_spectrum_-10.5_xray_18.2_ism.sav',

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -120,8 +122,8 @@ def get_euve_spectrometer_background_rate(wavelengths):
 # Plot for either escape or euve
 instrument_name = 'escape'  
 
-save_path = '/Users/masonjp2/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures/'
-data_path = '/Users/masonjp2/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration/' #euve line combo/'
+save_path = str(Path('~/Dropbox/Apps/Overleaf/ESCAPE Dimming Detectability Paper/figures').expanduser()) + '/'
+data_path = str(Path('~/Dropbox/Research/Data/ESCAPE/escape_dimming_detectability_exploration').expanduser()) + '/' #euve line combo/'
 filenames = [
     f'light_curve_{instrument_name}_-10.5_xray_17.5_ism.sav',
     f'light_curve_{instrument_name}_-10.5_xray_18.2_ism.sav',
